@@ -200,7 +200,7 @@ This is similar to $y = f(x)$.
 >>> revolution_plot3d(x^2,(x,0,2),(0,2*pi),parallel_axis='x',show_curve=True)
 
 # Depending upon the limit / trange the curve is plotted completely or partially.
-# Parallel axis is the axis of revolution, ie., the curve is revolved around the axis.
+# Parallel axis is the axis of revolution, ie., the curve is revolved around that axis.
 # Limit of x is explicitly given, while needed.
 
 
@@ -210,4 +210,3 @@ This is similar to $y = f(x)$.
 # x = f1(t) , y = f2(t)
 # x and y or sometimes z is initialised in a tuple.
 ```
-
