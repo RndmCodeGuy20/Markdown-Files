@@ -146,4 +146,68 @@ This is similar to $y = f(x)$.
 >>> L=[p1,p2,p3,p4] # 4 graphs
 >>> G=graphics_array(L,2,2) # a 2x2 grid of p1,p2,p3,p4
 >>> G.show(figsize=6)
+
+# Shows the graphics_array in a 2x2 grid.
+# "graphics_array" takes a list of graphics objects and returns a graphics_array object.
 ```
+
+### **_3D Arrows and Vectors Plot_**
+
+```Python
+>>> arrow3d([0,0,0],[1,1,1],color='red')
+
+# Shows a 3d arrow from (0,0,0) to (1,1,1).
+# "arrow3d" takes a list of three coordinates and returns a 3d arrow object.
+
+
+>>> vector([1,2,3],color='red')
+
+# Shows a 3d vector from (0,0,0) to (1,2,3).
+# "vector" takes a list of three coordinates and returns a 3d vector object.
+```
+
+### **_3D Plots_**
+
+```Python
+# Implicit 3D Plots.
+
+>>> var('x,y,z')
+>>> f(x,y,z)=x^n+y^n+z^n-4 # n is usually defined.
+>>> implicit_plot3d(f,(x,-2,2),(y,-2,2),(z,-2,2))
+
+# Implicit Plots with limits of x,y,z.
+# "implicit_plot3d" takes a function of three variables, f(x, y, z) and plots the curve f(x,y,z) = 0 over the specified "xrange", "yrange", and "zrange".
+```
+
+### **_Surface of Revolution_**
+
+```Python
+>>> revolution_plot3d(
+    curve,
+    trange,
+    phirange=None,
+    parallel_axis='z',
+    axis=(0, 0),
+    print_vector=False,
+    show_curve=False,
+    **kwds,
+)
+
+# Returns a plot of a revolved curve.
+# Range here is not that of x but theta.
+
+
+>>> revolution_plot3d(x^2,(x,0,2),(0,2*pi),parallel_axis='x',show_curve=True)
+
+# Depending upon the limit / trange the curve is plotted completely or partially.
+# Parallel axis is the axis of revolution, ie., the curve is revolved around the axis.
+# Limit of x is explicitly given, while needed.
+
+
+>>> t=var('t')
+>>> revolution_plot3d((cos(t),sin(t)),(t,0,2*pi),parallel_axis='z',color= 'red')
+
+# x = f1(t) , y = f2(t)
+# x and y or sometimes z is initialised in a tuple.
+```
+
