@@ -1,6 +1,6 @@
 # **_SageMath Notes :-_**
 
-# Solution of differentials equations in SageMath
+# To learn Calculus with SageMath
 
 ---
 
@@ -12,81 +12,130 @@
 Output
 ```
 
-### **_Solving Differential Equations_**
-
-We start by defining variable x and function y depending on this variable.
+### **_Limits_**
 
 ```Python
-x=var('x')
-y= function('y')(x)
+>>> limit(f(x) , x = a, dir =′ +′or′−′ )
 
-desolve(equation,variable,ics=.....,ivar=......,show_method=......)
+# "dir" - (default: None); dir may have the value 'plus' (or '+' or 'right' or 'above') for a limit from above, 'minus' (or '-' or'left' or 'below') for a limit from below, or may be omitted (implying a two-sided limit is to be computed).
+
+>>> f(x) = x/abs(x)
+>>> limit(f(x) , x = 0, dir = '+')
+
+1
+
+
+>>> limit(f(x) , x = 0, dir = '-')
+
+-1
+
+
+>>> limit(f(x) , x = 0)
+
+undefined
+
+
+>>> assume()
+
+# Make the given assumptions.
+
+
+>>> forget()
+
+# Forget the given assumption, or call with no arguments to forget all assumptions.
 ```
 
-| **_Attribute_** | **_Description_**                                                |
-| --------------- | ---------------------------------------------------------------- |
-| variable        | Dependent variable i.e. 'y'                                      |
-| ics             | Initial conditions [xo, yo]                                      |
-| ivar            | Independent variable i.e. x                                      |
-| show_method     | Method which has been used to get the solution.i.e. Linear,Exact |
+### **_Derivatives_**
 
 ```Python
-# Example
+>>> diff(f,n)
+>>> f.diff(n)
 
->>> x=var('x')
->>> y= function('y')(x)
->>> desolve(diff(y,x)-sin(2*x),y,show_method=True)
-
-[_C - 1/2*cos(2*x), 'linear']
+# The nth derivative of f.
 
 
->>> desolve(diff(y,x)-sin(2*x),y,[0,1])
+>>> show(f.diff(n))
 
--1/2*cos(2*x) + 3/2     # Solution of differential equation at x=0 and y=1, and hence find the integrating constant C.
-
+# Show the nth derivative of f.
+# Pretty print the arguments in an intelligent way.
+# For a single positional argument, this function chooses the highest-quality output supported by the user interface.
 ```
 
-### **_Solving Second Order Differential Equations_**
+### **_Derivatives_**
 
 ```Python
->>> desolve(equation,variable,ics=[x0, y0, y′0 ]`or`[x0, y0, x1, y1].....,ivar=......,show_method=......)
+>>> f(x,y) = (x^2 + y^2)^(1/2)
+>>> diff(f,x)
 
-# Example
-
->>> x=var('x')
->>> y=function('y')(x)
->>> desolve(diff(y,x,2)+2*diff(y,x)+y == cos(x),y)
-
-(_K2*x + _K1)*e^(-x) + 1/2*sin(x)
+# The first derivative of f with respect to x.
 
 
->>> desolve(diff(y,x,2)+2*diff(y,x)+y == cos(x),y,[0,3,pi/2,2])
+>>> diff(f,y)
 
-3*(x*(e^(1/2*pi) - 2)/pi + 1)*e^(-x) + 1/2*sin(x)
+# The first derivative of f with respect to y.
+
+
+>>> diff(f,x,y)
+
+# The first derivative of f first with respect to x and then with respect to y.
+
+
+>>> diff(f,x,n)
+
+# The nth derivative of f with respect to x.
+
+
+>>> diff(f,y,n)
+
+# The nth derivative of f with respect to y.
+
+
+>>> diff(f,x,y,n)
+
+# The nth derivative of f with respect to x and then with respect to y.
+
+
+>>> diff(f,x)(x=a,y=b) # if a,b are float values, evaluation is precise.
+
+# The first derivative of f with respect to x evaluated at a and b.
+
+
+>>> full_simplify(f)
+
+# Simplify f.
+
+
+>>> x = var('x')    # x is a symbolic variable
+>>> y = var('y')    # y is a symbolic variable
+>>> f(x,y) = x^3 + y^3 - 6*x*y  # f is a symbolic function
+>>> y=function('y')(x) # y is a function of x
+>>> temp=diff(f(x,y)) # temp is a symbolic expression
+>>> show(solve(temp,diff(y))) # solve for y
+
+# First we will solve to get differential with respect to x, that will give us a term diff(y(x),x).
+# To solve that expression we will differentiate with respect to y and then solve for y.
 ```
 
-### **_Solving Simultaneous Differential Equations_**
+### **_Derivatives_**
 
 ```Python
->>> desolve_system(equations,variables,ics=.....,ivar=......,show_method=......)
+>>> find_local_maximum(f,a,b)
 
-# Solve a system of any size of 1st order ODEs. Initial conditions are optional.
+# Numerically find a local maximum of the expression f on the interval [a,b] (or [b,a]) along with the point at which the maximum is attained.
+
+
+>>> find_local_minimum(f,a,b)
+
+# Numerically find a local minimum of the expression f on the interval [a,b] (or [b,a]) along with the point at which the minimum is attained.
+
+
+>>> find_root(f,a,b)
+
+# Numerically find a root of the expression f on the interval [a,b] (or [b,a]) along with the point at which the root is attained.
 ```
 
-#### _Example_
 
-Solve :
-
-$\frac {dx}{dt} = 1, \frac{dy}{dt} - x = -1, x(0) = 1, y(0) = 2$
 
 ```Python
->>> t = var('t')
->>> x = function('x')(t)
->>> y = function('y')(t)
->>> de1 = diff(x,t) + y - 1 == 0
->>> de2 = diff(y,t) - x + 1 == 0
->>> desolve_system([de1, de2], [x,y])
 
-[x(t) == (x(0) - 1)*cos(t) - (y(0) - 1)*sin(t) + 1,
-y(t) == (y(0) - 1)*cos(t) + (x(0) - 1)*sin(t) + 1]
 ```
