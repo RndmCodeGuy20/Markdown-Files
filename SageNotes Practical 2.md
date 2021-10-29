@@ -1,5 +1,7 @@
 # **_SageMath Notes :-_**
 
+# Plotting Graphs with SageMath
+
 ---
 
 ```Python

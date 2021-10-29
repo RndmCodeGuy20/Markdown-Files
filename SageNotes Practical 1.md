@@ -1,5 +1,7 @@
 # **_SageMath Notes :-_**
 
+# To Use SageMath as an Advanced Calculator
+
 ---
 
 ```Python
@@ -163,6 +165,6 @@ sin(81)
 >>> solve([a*x^2+b*x+c == 0],x)
 >>> solve([3*x1 - 2*x2 == 7, 2*x1 + 3*x2 == 11],x1,x2)
 
-# Algebraically solve an equation or system of equations (over the complex numbers) for given variables. 
+# Algebraically solve an equation or system of equations (over the complex numbers) for given variables.
 # Inequalities and systems of inequalities are also supported.
 ```
